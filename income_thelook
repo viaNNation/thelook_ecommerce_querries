@@ -1,0 +1,16 @@
+#I'm using thelook_ecommerce to improve my database query skills by extracting useful data for business intelligence
+
+#> In this query, I am extracting the sum of all results from the ''sale price'' column where the order status is ''completed'' 
+#> Correcting the date formatting for the purpose of the query 
+#> Rounding the value to the currency standard 
+#> Grouping by date, being year - month
+
+SELECT  
+  ROUND (SUM (sale_price), 2) AS income,
+  FORMAT_DATE ('%Y-%m', created_at) AS month
+FROM `bigquery-public-data.thelook_ecommerce.order_items`
+  WHERE status = 'Complete'
+  GROUP BY month
+  ORDER BY month;
+
+
